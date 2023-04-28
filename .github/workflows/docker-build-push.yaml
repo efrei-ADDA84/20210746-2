@@ -1,6 +1,6 @@
 name: Docker Build and Push Images
 on:
-  commit:
+  push:
     branches:
       - main
 jobs:
