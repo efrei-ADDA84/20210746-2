@@ -4,6 +4,7 @@ on:
     branches:
       - main
 jobs:
+  runs-on: fedora/37
   build-and-push:
     steps:
       - uses: actions/checkout@v2
