@@ -12,7 +12,8 @@ def get_weather(lat, lon, api_key):
 def main():
     LAT = os.environ.get('LAT')
     LON = os.environ.get('LON')
-    meteo = get_weather(LAT,LON,"83a2af5dad9b498e4857f724163d713c")
+    API_KEY = os.environ.get('API_KEY')
+    meteo = get_weather(LAT,LON,API_KEY)
     print(meteo)
 
 if __name__ == "__main__":
