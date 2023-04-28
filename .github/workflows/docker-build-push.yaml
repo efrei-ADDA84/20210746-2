@@ -4,8 +4,8 @@ on:
     branches:
       - main
 jobs:
-  runs-on: fedora/37
   build-and-push:
+    runs-on: fedora/37
     steps:
       - uses: actions/checkout@v2
       - name: Build docker image
