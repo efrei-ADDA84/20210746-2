@@ -1,5 +1,6 @@
 # 20210746
 DEVOPS
+
 TP 1
 
 0) Création de mon environnement de travail 
@@ -49,19 +50,30 @@ En l'occurence ici, j'ai dû mettre à jour le package de libcrypto3 qui comport
 Enfin avec hadolint on vérifie la structure de nos images écrites dans notre dockerfile qu'on corrige si besoin.
   docker pull hadolint/hadolint
   docker run --rm -i hadolint/hadolint < dockerfile
+Dans mon cas j'ai dû rajouter l'option --no-cache-dir pour ne pas en stocker. 
 
+TP2 : 
 
+On configure un workflow Github Action de manière à ce qu'à chaque commit poussé sur notre répôt distant s'exécute des commandes voulues. Ces commandes se définissent dans un fichier .yaml .
+Ici à chaque commit, notre image est construite et taggé comme vu précédemment. On désire également pousser automatiquement notre image sur le dockerhub, pour cela il faut avec les accès que l'on renseigne en renseignant nos identifiants utilisateur dans des secrets sur github. On peut y mettre un mot de passe ou une clé d'accès. 
+Voir le fichier .yaml
+
+Enfin on compte utiliser fastapi pour pouvoir exécuter des requêtes et récupérer les données météo avec une simple commande.
+On installe donc fastapi et uvicorn, un webserver pour python.
 pip install fastapi
 pip install uvicorn
 
-uvicorn weither-api-call:app --reload
-ou
+On lance le serveur : 
+  uvicorn weither-api-call:app --reload
+On peut également spéicifier l'hôte et le port que l'on souhaite
 uvicorn weither-api-call:app --host 0.0.0.0 --port 8081
 
-docker run --network host --env LAT="31.2504" --env LON="-99.2506" --env API_KEY=83a2af5dad9b498e4857f724163d713c ailogos/weitherapp:0.0.1
+On teste la commande faisant appel au serveur avec :
+  docker run --network host --env LAT="31.2504" --env LON="-99.2506" --env API_KEY=<api_key> ailogos/weitherapp:0.0.1
+puis avec :
+  curl "http://localhost:8081/?lat=5.902785&lon=102.754175&api_key=<api_key>"
+et tout fonctionne correctement.
 
-curl "http://localhost:8081/?lat=5.902785&lon=102.754175&api_key=83a2af5dad9b498e4857f724163d713c"
-
-Dans .yaml
+Pour finir on peut ajouter dans le fichier .yaml la vérification automatique de la structure de notre dockerfile en ajoutant ces lignes avnt la construction de l'image :
 - name: Hadolint
   run: docker push ailogos/weitherapp:0.0.1
