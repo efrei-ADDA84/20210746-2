@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Hadolint
+        run: docker run --rm -i hadolint/hadolint < dockerfile
       - name: Build docker image
         run: docker build . -t weitherapp:0.0.1 -t ailogos/weitherapp:0.0.1
       - name: Login to Docker Hub
@@ -17,4 +19,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Push docker image
         run: docker push ailogos/weitherapp:0.0.1
+      
 
