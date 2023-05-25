@@ -181,3 +181,7 @@ Deploy the container image to an Azure container instance
 az login
 #az account list -o table
 #az account set -s <subscription>
+
+
+
+J'ai du modifié pour installer libcrypto3-3.0.8-r5 car libcrypto3-3.0.8-r4 n'est plus disponible
