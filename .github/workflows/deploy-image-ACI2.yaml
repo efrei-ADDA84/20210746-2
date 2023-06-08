@@ -12,9 +12,9 @@ jobs:
           uses: actions/checkout@main
 
         - name: 'Checking the code with hadolint' 
-      uses: hadolint/hadolint-action@v3.1.0
-      with:
-          dockerfile: dockerfile 
+          uses: hadolint/hadolint-action@v3.1.0
+          with:
+            dockerfile: dockerfile 
           
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
