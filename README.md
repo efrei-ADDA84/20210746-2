@@ -178,10 +178,6 @@ Push the image to an Azure container registry
 
 Deploy the container image to an Azure container instance
 
-az login
-#az account list -o table
-#az account set -s <subscription>
 
-
-
-J'ai du modifié pour installer libcrypto3-3.0.8-r5 car libcrypto3-3.0.8-r4 n'est plus disponible
+J'ai du modifié pour installer libcrypto3-3.0.8-r5 car libcrypto3-3.0.8-r4 n'est plus disponible, puis de nouveau la changer pour libcrypto3=3.1.1-r1
+Après avoir réecrit un nouveau worflow pour le tp. Je me suis rendu compte qu'il fallait que je déactive le précédent.
