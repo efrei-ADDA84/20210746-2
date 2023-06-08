@@ -183,3 +183,5 @@ J'ai du modifié pour installer libcrypto3-3.0.8-r5 car libcrypto3-3.0.8-r4 n'es
 Après avoir réecrit un nouveau worflow pour le tp. Je me suis rendu compte qu'il fallait que je déactive le précédent.
 
 L'intérêt de Github actions 
+
+curl "http://devops-20210746.westeurope.azurecontainer.io:8081/?lat=5.902785&lon=102.754175":8081
