@@ -35,7 +35,7 @@ jobs:
           uses: 'azure/aci-deploy@v1'
           with:
             resource-group: ${{ secrets.RESOURCE_GROUP }}
-            dns-name-label: devops-20210746 #${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+            dns-name-label: devops-20210746
             image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210746:${{ github.sha }}
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
@@ -43,4 +43,3 @@ jobs:
             name: 20210746
             location: 'west europe'
             ports: 8081
-#test5

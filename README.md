@@ -191,3 +191,12 @@ Les points forts de Github Action par rapport à l'interface utilisateur ou la C
 -De plus la configuration de ces commandes est simplifiée d'autant que la structure des fichiers yaml est bien plus lisible.
 -Il peut être programmé automatiquement après certaines actions comme un commit sur git.
 -Il existe des actions pré-définies comme la connexion à docker ou Azure par exemple qui facilite le construction des workflows et permette un énorme gain de productivité
+
+BONUS :
+
+J'ai intégré Hadolint au workflow avec 
+'- name: 'Checking the code with hadolint' 
+          uses: hadolint/hadolint-action@v3.1.0
+          with:
+            dockerfile: dockerfile '
+            Cela fonctionne mais relève une étrangement une "erreur" de multiple RUN que je n'arrive pas à résoudre donc je vais les commenter pour que le workflow puisse fonctionner correctement dans son intégralité.
