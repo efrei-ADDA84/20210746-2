@@ -182,6 +182,12 @@ Deploy the container image to an Azure container instance
 J'ai du modifié pour installer libcrypto3-3.0.8-r5 car libcrypto3-3.0.8-r4 n'est plus disponible, puis de nouveau la changer pour libcrypto3=3.1.1-r1
 Après avoir réecrit un nouveau worflow pour le tp. Je me suis rendu compte qu'il fallait que je déactive le précédent.
 
-L'intérêt de Github actions 
 
 curl "http://devops-20210746.westeurope.azurecontainer.io:8081/?lat=5.902785&lon=102.754175":8081
+
+Les points forts de Github Action par rapport à l'interface utilisateur ou la CLI :
+
+-Github actions permet de lancer automatiquement les commandes pour déployer notre code sans avoir à les taper manuellement sur la CLI.
+-De plus la configuration de ces commandes est simplifiée d'autant que la structure des fichiers yaml est bien plus lisible.
+-Il peut être programmé automatiquement après certaines actions comme un commit sur git.
+-Il existe des actions pré-définies comme la connexion à docker ou Azure par exemple qui facilite le construction des workflows et permette un énorme gain de productivité
