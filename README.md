@@ -200,3 +200,52 @@ J'ai intégré Hadolint au workflow avec
           with:
             dockerfile: dockerfile '
             Cela fonctionne mais relève une étrangement une "erreur" de multiple RUN que je n'arrive pas à résoudre donc je vais les commenter pour que le workflow puisse fonctionner correctement dans son intégralité.
+
+
+# TP4 : 
+
+Terraform est un environnement logiciel d'insfrastructure as code qui permet d'automatiser la construction de ressources ex : réseau, machines virtuelles, bases de données, etc.
+
+Le but de ce tp est de créer automatiquement une vm disposant d'une adresse ip publique dans un réseau existant à l'aide de terraform. Il faudra être capable ensuite de se connecter à la vm avec SSH. 
+
+## Installation de Terraform et de l'Azure CLI : 
+
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+sudo dnf install terraform
+
+
+curl -L https://aka.ms/InstallAzureCli | bash
+sudo dnf -y install azure-cli
+
+Une fois l'installion effectuée on se connecte à Azure avec az login puis on lance la commande terraform init pour préparer l'espace de travail.
+
+## Terraform
+
+Dans le fichier main.tf on relie notre terraform avec Azure avec le provider en spécifiant notre abonnement.
+Dans la partie network on crée la connexion entre notre machine virtuelle avec le réseau existant du TP en configurant une interface réseau.
+On peut ensuite créer notre vm en renseignant entre autres l'inferface réseau précemment créée et on crée par la même occasion une clef SSH pour avoir accès à notre vm.
+Enfin on spécifie en output de notre configuration (dans le fichier output.tf) la clef ssh qui nous permettra d'avoir accès à nos ressources.
+
+
+On effectue ensuite les commandes suivantes : 
+
+- terraform plan # si besoin pour afficher les changements sans les appliquer.
+- terraform apply # pour mettre à jour la configuration
+- terraform output # pour afficher les valeurs en sortie et la clef ssh
+- terraform destroy pour supprimer les ressources
+ 
+On lance ensuite la commande suivante pour se connecter en ssh. On note que l'adresse ip peut être trouvée via nos ressources Azure et que la clef privée est spécifiée dans la sortie output, ou dans le fichier txt.  
+
+```ssh -i private_key.txt devops@10.3.1.29```
+
+
+Problème je n'arrive pas à résoudre un connexion timed out en exécutant la connexion ssh.
+
+Bonus : 
+
+Pour vérifier que notre code terraform est bien formaté, on peut lancer la commande suivante 
+terraform fmt -check
+ou simplement terraform fmt pour appliquer le formatage automatique.
+On crée un fichier vars.tf dans lequel on note les variables redondances
+
